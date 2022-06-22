@@ -5,6 +5,7 @@ export function catchAsync(controller: CallableFunction) {
     try {
       await controller(req, res, next);
     } catch (error) {
+      console.log(error);
       return res
         .status(500)
         .send({ message: 'Internal Server Error.', data: [] });
