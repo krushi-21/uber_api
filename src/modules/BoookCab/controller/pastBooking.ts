@@ -11,7 +11,7 @@ export default async function checkPastBooking(
   const limit: number = (req.query.limit as any) * 1 || 100;
   const skip = (page - 1) * limit;
 
-  const userId = req.body.user.id;
+  const userId = req.user.id;
   console.log(skip);
   console.log(limit);
   const reqs = await CabBooking.find({ createdBy: userId })

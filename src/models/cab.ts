@@ -20,7 +20,7 @@ const CabSchema = new Schema(
     driver: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: false,
+      required: true,
       unique: true,
     },
   },

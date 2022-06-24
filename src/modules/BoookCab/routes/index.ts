@@ -9,7 +9,7 @@ import { catchAsync } from '../../../helpers/catchAsync';
 const router = Router();
 
 //adding all routes
-router.post('/createBooking', catchAsync(createBooking));
+router.post('/createBooking', authMiddleware, catchAsync(createBooking));
 router.delete('/deleteBooking/:id', authMiddleware, catchAsync(deleteBooking));
 router.get('/pastBooking', authMiddleware, catchAsync(checkPastBooking));
 router.get('/getNearbyCab', authMiddleware, catchAsync(getNearbyCab));

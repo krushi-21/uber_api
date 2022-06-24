@@ -27,12 +27,12 @@ export default async function createBooking(
   const tripPrice = Math.ceil(15 * dist);
 
   //for 10miles
-  const radius = 1000 / 3963.2;
+  const radius = 10 / 3963.2;
 
   //get nearby cabs
   const cabs: any = await Cab.find({
     booked: false,
-    location: {
+    loc: {
       $geoWithin: {
         $centerSphere: [[locationA[0], locationA[1]], radius],
       },
@@ -46,13 +46,14 @@ export default async function createBooking(
       message: 'no cabs available at your destination',
     });
   }
+  console.log(req.user);
   //create cab booking
   const cabBooking = new CabBooking({
     pickupAddress,
     dropAddress,
     tripPrice,
     bookingConfirm: true,
-    createdBy: req.body.user.id,
+    createdBy: req.user.id,
     cab: cabs[0]._id,
   });
 

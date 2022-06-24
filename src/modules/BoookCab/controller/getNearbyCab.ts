@@ -15,10 +15,12 @@ export default async function getNearbyCab(
 
   //10miles
   const radius = 10 / 3963.2;
-
+  console.log(lat);
+  console.log(long);
+  console.log(req.body);
   const cabs = await Cab.find({
     booked: false,
-    location: {
+    loc: {
       $geoWithin: {
         $centerSphere: [[lat, long], radius],
       },
